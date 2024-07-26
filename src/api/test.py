@@ -19,11 +19,12 @@ def test():
 <rss version="2.0">
 
 <channel>
-<title>Python By Night</title>
+<title>Local Testing</title>
 <link>https://www.pythonbynight.com</link>
 <description>Coolest Site Ever</description>
 
 <item>
+<title>Item Title</title>
 <description>Such A Simple RSS Feed</description>
 </item>
 </channel>
