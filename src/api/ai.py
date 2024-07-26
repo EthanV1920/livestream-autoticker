@@ -1,14 +1,23 @@
+from pathlib import Path
+from fastapi import APIRouter, Depends, Request
+from src.api import auth
+import sqlalchemy
+import json
 from openai import OpenAI
 import sqlalchemy
 
 
 # Object setup
 client = OpenAI()
+router = APIRouter(
+        dependencies=[Depends(auth.get_api_key)],
+        )
 
 # Global setup
 GPT_MODEL = "gpt-4o"
 
 
+@router.get("/ticker/", tags=["ticker"])
 def get_new_ticker(elapsed_time, prior_male_standings, current_male_standings, prior_female_standings, current_female_standings):
     """
         elapsed_time 
@@ -36,7 +45,6 @@ def get_new_ticker(elapsed_time, prior_male_standings, current_male_standings, p
             }
                 ]
     return chat_completion_request(messages)
-
 
 
 def chat_completion_request(messages, tools=None, model=GPT_MODEL):
