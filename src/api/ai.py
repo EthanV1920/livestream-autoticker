@@ -45,9 +45,8 @@ def get_new_ticker(elapsed_time, prior_male_standings, current_male_standings, p
             }
                 ]
     chat_response = chat_completion_request(messages)
-    # chat_message = json.loads(chat_response)
-    # print(chat_message)
-    print(chat_response.choices)
+    chat_message = chat_response.choices[0].message.content
+    print(chat_message)
     print(f"Generated Mesasge: \n {chat_response}")
     sql_text = sqlalchemy.text("""
     insert into chat_history (message, valid)
@@ -58,7 +57,7 @@ def get_new_ticker(elapsed_time, prior_male_standings, current_male_standings, p
     """)
 
     with db.engine.begin() as connection:
-        result = connection.execute(sql_text, {"message": "test Insert", "valid": 0})
+        result = connection.execute(sql_text, {"message": chat_message, "valid": 0})
 
     print(result)
 
