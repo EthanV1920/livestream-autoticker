@@ -4,8 +4,8 @@ from src.api import auth
 import sqlalchemy
 import json
 from openai import OpenAI
-import sqlalchemy
 
+from src import database as db
 
 # Object setup
 client = OpenAI()
@@ -44,7 +44,25 @@ def get_new_ticker(elapsed_time, prior_male_standings, current_male_standings, p
                 "content": f"This is the table for the male standing {elapsed_time} minuets ago: {prior_male_standings} and this is the current male standing: {current_male_standings}. This is the table for the female standing {elapsed_time} minuets ago: {prior_female_standings} and this is the current female standing: {current_female_standings}."
             }
                 ]
-    return chat_completion_request(messages)
+    chat_response = chat_completion_request(messages)
+    # chat_message = json.loads(chat_response)
+    # print(chat_message)
+    print(chat_response.choices)
+    print(f"Generated Mesasge: \n {chat_response}")
+    sql_text = sqlalchemy.text("""
+    insert into chat_history (message, valid)
+    values (
+      :message,
+      :valid
+    )
+    """)
+
+    with db.engine.begin() as connection:
+        result = connection.execute(sql_text, {"message": "test Insert", "valid": 0})
+
+    print(result)
+
+    return chat_response
 
 
 def chat_completion_request(messages, tools=None, model=GPT_MODEL):
@@ -52,7 +70,7 @@ def chat_completion_request(messages, tools=None, model=GPT_MODEL):
         response = client.chat.completions.create(
             model=model,
             messages=messages,
-            tools=tools,
+            # tools=tools,
         )
         return response
     except Exception as e:

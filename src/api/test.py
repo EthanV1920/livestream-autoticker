@@ -20,7 +20,7 @@ def test():
 
 <channel>
 <title>Local Testing</title>
-<link>https://www.pythonbynight.com</link>
+<link>https://www.example.com</link>
 <description>Coolest Site Ever</description>
 
 <item>

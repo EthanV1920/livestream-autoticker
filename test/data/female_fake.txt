@@ -1,0 +1,58 @@
+{
+"position": 13,
+"bib": "F2",
+"display_name": "Katie Schide",
+"gender": "F",
+"age": 32,
+"time_in": "08:46pm",
+"status": "Robie Point"
+},
+{
+"position": 14,
+"bib": "46",
+"display_name": "Fuzhao Xiang",
+"gender": "F",
+"age": 32,
+"time_in": "08:47pm",
+"status": "Robie Point"
+},
+{
+"position": 17,
+"bib": "F3",
+"display_name": "Eszter Csillag",
+"gender": "F",
+"age": 39,
+"time_in": "09:42pm",
+"status": "No Hands"
+}
+
+
+{
+"position": 14,
+"bib": "F2",
+"display_name": "Katie Schide",
+"gender": "F",
+"age": 32,
+"time_in": "08:06pm",
+"time_out": "--:--",
+"elapsed": "15:46:57",
+"status": "No Hands"
+},
+{
+"position": 13,
+"bib": "46",
+"display_name": "Fuzhao Xiang",
+"gender": "F",
+"age": 32,
+"time_in": "08:04pm",
+"status": "No Hands"
+},
+{
+"position": 17,
+"bib": "F3",
+"display_name": "Eszter Csillag",
+"gender": "F",
+"age": 39,
+"time_in": "08:15pm",
+"status": "Pointed Rocks"
+}

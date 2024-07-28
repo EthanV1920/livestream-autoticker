@@ -1,0 +1,52 @@
+{
+"position": 1,
+"bib": "21",
+"display_name": "Jim Walmsley",
+"gender": "M",
+"age": 34,
+"status": "Finished"
+},
+{
+"position": 2,
+"bib": "39",
+"display_name": "Rod Farvard",
+"gender": "M",
+"age": 28,
+"status": "Robie Point"
+},
+{
+"position": 3,
+"bib": "34",
+"display_name": "Hayden Hawks",
+"gender": "M",
+"age": 33,
+"status": "Robie Point"
+}
+
+
+
+{
+"position": 1,
+"bib": "21",
+"display_name": "Jim Walmsley",
+"gender": "M",
+"age": 34,
+"status": "Robie Point"
+},
+{
+"position": 2,
+"bib": "39",
+"display_name": "Rod Farvard",
+"gender": "M",
+"age": 28,
+"status": "No Hands"
+},
+{
+"position": 3,
+"bib": "34",
+"display_name": "Hayden Hawks",
+"gender": "M",
+"age": 33,
+"status": "No Hands"
+}
+
