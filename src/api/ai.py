@@ -14,7 +14,8 @@ router = APIRouter(
         )
 
 # Global setup
-GPT_MODEL = "gpt-4o"
+# GPT_MODEL = "gpt-4o"
+GPT_MODEL = "gpt-4o-mini"
 
 
 @router.get("/ticker/", tags=["ticker"])
@@ -56,8 +57,13 @@ def get_new_ticker(elapsed_time, prior_male_standings, current_male_standings, p
     )
     """)
 
+    sql_options = {
+            "message": chat_message,
+            "valid": 0
+            }
+
     with db.engine.begin() as connection:
-        result = connection.execute(sql_text, {"message": chat_message, "valid": 0})
+        result = connection.execute(sql_text, sql_options)
 
     print(result)
 
@@ -76,4 +82,3 @@ def chat_completion_request(messages, tools=None, model=GPT_MODEL):
         print("Unable to generate ChatCompletion response")
         print(f"Exception: {e}")
         return e
-

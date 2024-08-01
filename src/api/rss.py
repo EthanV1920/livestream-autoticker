@@ -1,16 +1,10 @@
-from pathlib import Path
-from fastapi import APIRouter, Depends, Request, Response
-from src.api import auth
+from fastapi import APIRouter, Response
 import sqlalchemy
-import json
-from openai import OpenAI
 
 from src import database as db
 
 # Object setup
-router = APIRouter(
-        # dependencies=[Depends(auth.get_api_key)],
-        )
+router = APIRouter()
 
 
 @router.get("/feed/", tags=["rss"])
@@ -19,7 +13,8 @@ def test():
     message_sql = sqlalchemy.text("""
     select message
     from chat_history
-    where valid = 1
+    where live = 'True'
+    limit 1
     """)
 
     with db.engine.begin() as connection:
