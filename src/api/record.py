@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Response, encoders, responses
 import datetime
-import pytz
 import sqlalchemy
 import requests
 import json
