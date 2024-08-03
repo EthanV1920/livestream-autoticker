@@ -10,13 +10,11 @@ from src import database as db
 router = APIRouter()
 
 # ultralive.net endpoint url
-ul_url_1 = "https://www.ultralive.net/api/overall/stats/107"
+ul_overall = "https://www.ultralive.net/api/overall/stats/107"
+ul_leaders = "https://www.ultralive.net/api/leaders/107/1"
+ul_top_men = " https://www.ultralive.net/api/leaders/107/2"
+ul_top_women = "https://www.ultralive.net/api/leaders/107/3"
 
-
-ul_url = "https://www.ultralive.net/api/leaders/107/1"
-# tz = pytz.timezone("America/Los_Angeles")
-# start_time = datetime.datetime.strftime('%Y-%m-%d %H:%M:%S', localtime(1722682800))
-# now = datetime.datetime.now(tz)
 
 @router.get("/record/", tags=["record"])
 def record():
@@ -24,18 +22,30 @@ def record():
     start_time_datetime = now - datetime.datetime.fromtimestamp(1722657600)
     print(f"Current time: {start_time_datetime}")
 
-    overall_stat = requests.get(ul_url)
-    parsed_overall_stat = overall_stat.json()
-    print(f"Overall Stats from ultralive:\n{parsed_overall_stat}")
+    leaders_request = requests.get(ul_leaders)
+    overall_request = requests.get(ul_overall)
+    men_request = requests.get(ul_top_men)
+    women_request = requests.get(ul_top_women)
+
+    overall_parsed = overall_request.json()
+    leaders_parsed = leaders_request.json()
+    men_parsed = men_request.json()
+    women_parsed = women_request.json()
+
+    print(f"Overall Stats from ultralive:\n{overall_parsed}")
+    print(f"Leaders Stats from ultralive:\n{leaders_parsed}")
 
 
     message_sql = sqlalchemy.text("""
-    insert into waldo_test_data (overall_stat, race_time)
-    values (:json_data, :race_time)
+    insert into waldo_test_data (overall, leaders, top_men, top_women, race_time)
+    values (:overall, :leaders, :top_men, :top_women, :race_time)
     """)
 
     message_options = { 
-                       "json_data": json.dumps(parsed_overall_stat),
+                       "overall": json.dumps(overall_parsed),
+                       "leaders": json.dumps(leaders_parsed),
+                       "top_men": json.dumps(men_parsed),
+                       "top_women": json.dumps(women_parsed),
                        "race_time": start_time_datetime
                        }
 
