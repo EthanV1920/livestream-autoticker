@@ -10,8 +10,10 @@ from src import database as db
 router = APIRouter()
 
 # ultralive.net endpoint url
-ul_url = "https://www.ultralive.net/api/overall/stats/107"
+ul_url_1 = "https://www.ultralive.net/api/overall/stats/107"
 
+
+ul_url = "https://www.ultralive.net/api/leaders/107/1"
 # tz = pytz.timezone("America/Los_Angeles")
 # start_time = datetime.datetime.strftime('%Y-%m-%d %H:%M:%S', localtime(1722682800))
 # now = datetime.datetime.now(tz)
